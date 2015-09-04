@@ -26,6 +26,8 @@ export PGUSER="brick-gardens"
 
 # Create database and user.
 sudo -u postgres createdb $PGDATABASE
-sudo -u postgres createuser -sw $PGUSER
+
+# Passing command to set password automatically.
+sudo -u postgres psql -c "CREATE ROLE $(PGUSER) PASSWORD 'brickgardens' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;"
 
 $HOME/bin/lein
